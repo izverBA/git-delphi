@@ -1,0 +1,1 @@
+select ID, Name_item, Where_item, Login_Item, Psw_Item, Contacts, Notes from Items

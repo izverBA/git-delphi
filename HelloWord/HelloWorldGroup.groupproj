@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{92545415-2CF6-4A1F-8DEC-FDB2D1AAD316}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="HelloWorld.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Carnaval\carnaval.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="HelloWorld">
+        <MSBuild Projects="HelloWorld.dproj"/>
+    </Target>
+    <Target Name="HelloWorld:Clean">
+        <MSBuild Projects="HelloWorld.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HelloWorld:Make">
+        <MSBuild Projects="HelloWorld.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="carnaval">
+        <MSBuild Projects="..\Carnaval\carnaval.dproj"/>
+    </Target>
+    <Target Name="carnaval:Clean">
+        <MSBuild Projects="..\Carnaval\carnaval.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="carnaval:Make">
+        <MSBuild Projects="..\Carnaval\carnaval.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="HelloWorld;carnaval"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="HelloWorld:Clean;carnaval:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="HelloWorld:Make;carnaval:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
